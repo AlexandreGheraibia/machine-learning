@@ -82,7 +82,6 @@ Theta2_grad = zeros(size(Theta2));
   for c = 1:num_labels
     J=J+((-(y==c))'*log(prediction(:,c))-(1-(y==c))'*log(1-prediction(:,c)));
      delta3=[delta3 prediction(:,c)-(y==c)];
-     
   end 
   
     J=1/m*J+lambda/(2*m)*(sum(sum(T1.^2,1),2)+sum(sum(T2.^2,1),2));  

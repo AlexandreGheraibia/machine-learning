@@ -36,8 +36,7 @@ for a=1:8
   endfor
 endfor
 [val ind]=min(error);
-C=inter(floor(ind/8)+1);
-sigma=sigmaTest(ind)
+C=inter(floor(ind/8)+1)
 if(mod(ind,8)!=0)
  sigma=inter(mod(ind,8));
 else

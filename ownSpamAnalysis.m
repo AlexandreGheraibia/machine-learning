@@ -17,6 +17,6 @@
  XTest=X(sel(l2+1:end),:);
  yTest=y(sel(l2+1:end),:);
  [C]=dataset3Params(XTrain,yTrain, XCv,yCv);
- model = svmTrain(XTest,yTest, C,@linearKernel);
+ model = svmTrain(XCv,yCv, C,@linearKernel);
  p = svmPredict(model, XTest);
  fprintf('Training Accuracy: %f\n', mean(double(p == yTest)) * 100);

@@ -1,7 +1,6 @@
 function createVocalList(path)
-  X=[];
+  vocLis=[];
   len=2;
-  y=ones(len-2,1);
   [list]=dir(path);
   l=length(list);
   if exist("voc.mat")!=0
@@ -13,7 +12,7 @@ function createVocalList(path)
   else
     len+=20;
   end;
-  vocLis=[];
+ 
   for i=debut:len
     fprintf('%d\r',i);
     pathFile=[path "/" list(i).name];

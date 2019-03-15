@@ -23,6 +23,6 @@ function createVocalList(path)
   endfor;
   %save myTraining.mat len X y;
   vocLis
-  unique(vocLis,"rows")
+  vocLis=unique(vocLis,"rows")
   save voc.mat len vocLis;
 end;

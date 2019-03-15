@@ -89,7 +89,7 @@ end
    
    n=size(vocabListtmp ,1);
    for(i=1:n)
-      if(vocabListtmp(i).w>10)
+      if(vocabListtmp(i).w>10) && (length(vocabListtmp(i).str)>1)
         vocabList=[vocabList;vocabListtmp(i).str];
       endif
    endfor;

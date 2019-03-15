@@ -18,10 +18,30 @@ function createVocalList(path)
     pathFile=[path "/" list(i).name];
     file_contents = readFile(pathFile);
     vocabList = extractVocabularyEmail(file_contents);
-    vocLis=[vocLis;vocabList];
+    n=size(vocabList,1);
+    for(j=1:n)
+        k=1;
+        m=size(vocLis,1);
+        while(k<m+1&&strcmp(vocabList(j,:),vocLis(k).str)!=1)
+          k++;
+        end;
+        if(k!=m+1)
+          vocLis(k).w++;
+        else
+          elem.str=vocabList(j,:);
+          elem.w=0;
+          vocLis=[vocLis;elem];
+        end;
+    end;
+    
   endfor;
   %save myTraining.mat len X y;
-  vocLis
-  vocLis=unique(vocLis,"rows")
   save voc.mat len vocLis;
+  n=size(vocLis,1);
+  for j=1:n
+    if(vocLis(j).w>30)
+     vocLis(j).str
+     vocLis(j).w
+    end;
+  end;
 end;

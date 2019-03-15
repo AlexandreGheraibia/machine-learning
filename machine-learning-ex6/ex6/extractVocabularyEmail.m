@@ -7,7 +7,7 @@ function vocabList = extractVocabularyEmail(email_contents)
 %
 
 % Load Vocabulary
-vocabListtmp = [];
+
 vocabList=[];
 % ========================== Preprocess Email ===========================
 
@@ -71,28 +71,14 @@ while ~isempty(email_contents)
     if length(str) < 1
        continue;
     end
-    n=size(vocabListtmp ,1);
-    i=1;
-    while i<n+1&&(strcmp(str,vocabListtmp (i).str)!=1)
-      i++;
-    endwhile
-    if(i!=n+1)
-       vocabListtmp (i).w++;
-    else
-     elem.str=str;
-     elem.w=1;
-     vocabListtmp =[vocabListtmp ;elem];
-    end;
-    % =============================================================
-
-end
    
-   n=size(vocabListtmp ,1);
-   for(i=1:n)
-      if(vocabListtmp(i).w>10) && (length(vocabListtmp(i).str)>1)
-        vocabList=[vocabList;vocabListtmp(i).str];
-      endif
-   endfor;
+    % =============================================================
+    if(length(str)>1)
+     vocabList = [vocabList;str];
+    end;
+end
+   vocabList=unique(vocabList,"rows");
+  
 % Print footer
 fprintf('\n\n=========================\n');
 

@@ -3,14 +3,15 @@ function createVocalList(path)
   len=2;
   [list]=dir(path);
   l=length(list);
-  if exist("voc.mat")!=0
-     load voc.mat;
+  if exist("voc.txt")!=0
+     load voc.txt;
  end;
+  number=20;
   debut=len+1;
-  if len+20>l
+  if len+number>l
     len=l;
   else
-    len+=20;
+    len+=number;
   end;
  
   for i=debut:len
@@ -22,26 +23,24 @@ function createVocalList(path)
     for(j=1:n)
         k=1;
         m=size(vocLis,1);
-        while(k<m+1&&strcmp(vocabList(j,:),vocLis(k).str)!=1)
+        while(k<m+1&&strcmp(vocabList(j),vocLis(k).str)!=1)
           k++;
         end;
         if(k!=m+1)
           vocLis(k).w++;
         else
           elem.str=vocabList(j,:);
-          elem.w=0;
+          elem.w=1;
           vocLis=[vocLis;elem];
         end;
     end;
     
   endfor;
-  %save myTraining.mat len X y;
-  save voc.mat len vocLis;
-  n=size(vocLis,1);
-  for j=1:n
-    if(vocLis(j).w>30)
-     vocLis(j).str
-     vocLis(j).w
-    end;
+  
+  k=1;
+  while(k<m+1)
+    fprintf("%s %d\n",vocLis(k).str,vocLis(k).w);
+      k++;
   end;
+  save voc.txt vocLis len;
 end;

@@ -16,12 +16,15 @@ function createVocalList(path)
  
   for i=debut:len
     fprintf('%d\r',i);
+    list(i).name
     pathFile=[path "/" list(i).name];
     file_contents = readFile(pathFile);
     vocabList = extractVocabularyEmail(file_contents);
     n=size(vocabList,1);
     for(j=1:n)
-        [trouve ind]=appartient(vocLis,vocabList(j,:));
+        tmp=vocabList(j,:);
+        [trouve ind]=appartient(vocLis,tmp);
+       
         if(trouve==1)
           vocLis(ind).w++;
         else
@@ -36,10 +39,10 @@ function createVocalList(path)
   k=1;
   m=size(vocLis,1);
   while(k<m+1)
-    if(vocLis(k).w>1)
+      if(vocLis(k).w>3)
       fprintf("%s %d\n",vocLis(k).str,vocLis(k).w);
-     end;
+      end
         k++;
   end;
-  save voc.txt vocLis len;
+  %save voc.txt vocLis len;
 end;
